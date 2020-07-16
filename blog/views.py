@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
@@ -62,6 +62,11 @@ def post_list(request, tag_slug=None):
 
     return render(request,'blog/post/list.html',
     {'page':page, 'posts': posts, 'tag': tag })
+
+    
+
+def index(request):
+    return(post_list(request))
 '''
 class PostListView(ListView):
     queryset = Post.published.all()
@@ -118,3 +123,7 @@ def post_share(request, post_id):
 Evrething is ok, forms are working
 I must understand how views connected with templates .html
 '''
+
+
+def example(request):
+    return render(request, 'blog/post/example.html')
